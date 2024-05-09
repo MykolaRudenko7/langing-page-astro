@@ -1,10 +1,53 @@
 ---
 import Layout from "layouts/Layout.astro";
 import Header from "components/Header";
+import { mainContent } from "data/content";
 ---
 
-<Layout title="Frontend - Intro section with dropdown navigation.">
-  <main class="container">
-    <Header client:only="'react" />
+<Layout title="Frontend Mentor | Intro section with dropdown navigation.">
+  <Header client:only="react" />
+  <main class="container px-2">
+    <div
+      class="mx-auto grid max-w-[1024px] grid-cols-1 gap-4 text-center lg:grid-cols-2 lg:gap-[7rem] lg:pt-5 lg:text-left"
+    >
+      <div class="flex flex-col items-center">
+        <div>
+          <h1
+            class="text-4xl font-bold text-almost-black lg:text-[5rem] lg:leading-[5rem]"
+          >
+            {mainContent.heading}
+          </h1>
+          <p class="py-5 lg:py-[4rem] lg:text-xl">
+            {mainContent.text}
+          </p>
+          <button
+            class="rounded-xl border border-almost-black bg-almost-black px-5 py-2 text-almost-white hover:bg-almost-white hover:text-almost-black lg:px-8 lg:py-3 lg:text-xl"
+          >
+            {mainContent.button}
+          </button>
+        </div>
+        <ul class="mt-[3rem] flex items-center justify-center space-x-9">
+          {
+            mainContent.clients.map((client) => (
+              <li>
+                <img src={client.logo} alt={`Client ${client.name} Logo`} />
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div class="order-first lg:order-last">
+        <img
+          class="mb-9 lg:hidden"
+          src={mainContent.heroImages.mobile}
+          alt="Hero"
+        />
+        <img
+          class="hidden lg:block"
+          src={mainContent.heroImages.desktop}
+          alt="Hero"
+        />
+      </div>
+    </div>
   </main>
 </Layout>

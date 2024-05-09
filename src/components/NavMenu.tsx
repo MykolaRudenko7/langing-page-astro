@@ -5,16 +5,16 @@ import {
   MenuItems,
   Transition
 } from "@headlessui/react";
-import { menuItems } from "data/menuItems";
+import { navigationButtons } from "data/content";
 
 export default function NavMenu() {
   return (
     <nav>
       <ul className="hidden lg:ml-14 lg:flex lg:space-x-7">
-        {menuItems.map(({ title, items }) => (
+        {navigationButtons.map(({ title, items }) => (
           <li>
             <Menu>
-              <MenuButton>
+              <MenuButton className="hover:text-almost-black">
                 {title}
                 <img
                   src="images/icon-arrow-down.svg"
@@ -34,7 +34,7 @@ export default function NavMenu() {
                   anchor="bottom"
                   className="right-0 mt-4 w-40 rounded-md bg-white py-3 shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none"
                 >
-                  {items.map((item, itemIndex) => (
+                  {items?.map((item, itemIndex) => (
                     <MenuItem key={itemIndex}>
                       <a
                         className="block w-full cursor-pointer px-4 py-2 text-left text-sm data-[focus]:bg-blue-100 data-[focus]:text-gray-900"
@@ -56,6 +56,8 @@ export default function NavMenu() {
             </Menu>
           </li>
         ))}
+        <li className="cursor-pointer hover:text-almost-black">Careers</li>
+        <li className="cursor-pointer hover:text-almost-black">Blog</li>
       </ul>
     </nav>
   );
